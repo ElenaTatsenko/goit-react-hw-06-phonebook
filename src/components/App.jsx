@@ -5,6 +5,7 @@ import ContactForm from "./ContactForm/ContactForm";
 import ContactList from "./ContactList/ContactList";
 import ContactFilter from "./ContactFilter/ContactFilter";
 import useLocalStorage from '../hooks/useLocalStorage'
+//import { useSelector } from 'react-redux';
 
  export default function App () {
 const [contacts, setContacts] = useLocalStorage('contacts',[])
@@ -50,21 +51,7 @@ const [filter, setFilter] = useState('');
   useEffect(() => {
   window.localStorage.setItem('contacts', JSON.stringify(contacts))
   }, [contacts]);
- // componentDidMount() {
-    
 
-  //  if (parsedContacts) {
- //     this.setState({ contacts: parsedContacts })
-  //  };
-    
- // };
-
-  //componentDidUpdate(prevProps, prevState) {
-  //  if (this.state.contacts !== prevState.contacts) {
-  //    localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
-  //  }
-  //};
-    
   
    
        
@@ -81,16 +68,3 @@ const [filter, setFilter] = useState('');
     );
   }
 
-
-
- //const useLocalStorage = (key, defaultValue) => {
- // const [state, setstate] = useState(() => {
- //   return JSON.parse(window.localStorage.getItem('key')) ?? defaultValue;
- // });
-
-  //  useEffect(() => {
-   // window.localStorage.setItem(key, JSON.stringify(state))
-  //  }, [key, state]);
-  
-  //  return [state, setstate];
-  //}
