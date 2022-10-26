@@ -1,9 +1,14 @@
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import css from '../ContactForm/ContactForm.module.css'
+import { useDispatch } from "react-redux"; 
+import { addContact } from '../../redux/contactsSlice';
 
-export default function ContactForm({ onSubmit }) {
+
+export default function ContactForm() {
+
+  const dispatch = useDispatch();
+
   const [name, setName] = useState('')
   const [number, setNumber] = useState('')
 
@@ -20,9 +25,8 @@ export default function ContactForm({ onSubmit }) {
         return;
     }
   }
-    const handleSubmit = event => {
-      event.preventDefault();
-      onSubmit({ name: name, number: number })
+    const handleSubmit = (data) => {
+       dispatch(addContact(data))
         reset()
     }
 
@@ -72,19 +76,3 @@ export default function ContactForm({ onSubmit }) {
     }
 
 
-ContactForm.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-
-}
-
-//const hendleNameChange = event => {
-    
- // setName(event.currentTarget.value);
-  
-//};
-  
- // const hendleNumberChange = event => {
-    
- // setNumber(event.currentTarget.value);
-  
- // };

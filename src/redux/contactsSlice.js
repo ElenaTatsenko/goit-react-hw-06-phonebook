@@ -7,12 +7,11 @@ import storage from "redux-persist/lib/storage";
 export const contactsSlice = createSlice({
     name: 'contacts',
     initialState: [],
-     
     reducers: {
         addContact(state, action) {
             state.find(
-                contact => 
-                    action.payload.name.toLowerCase() === contact.name.toLowerCase() ?
+                contact =>
+                    action.payload.name.toLowerCase() === contact.name.toLowerCase() || action.payload.number === contact.number ?
                         alert(`${action.payload.name} is already in contacts.`)
                         : state.push({
                             id: nanoid(),
