@@ -3,25 +3,28 @@ import { nanoid } from 'nanoid';
 import { persistReducer } from 'redux-persist';
 import storage from "redux-persist/lib/storage";
 
-
 export const contactsSlice = createSlice({
     name: 'contacts',
-    initialState: [],
+    initialState: {
+        contacts: [],
+    },
+        
     reducers: {
         addContact(state, action) {
-            state.find(
+            state.contacts.find(
                 contact =>
-                    action.payload.name.toLowerCase() === contact.name.toLowerCase() || action.payload.number === contact.number ?
+                    action.payload.name.toLowerCase() === contact.name.toLowerCase()) ?
                         alert(`${action.payload.name} is already in contacts.`)
-                        : state.push({
+                        : state.contacts.push({
                             id: nanoid(),
                             name: action.payload.name,
                             number: action.payload.number,
                         })        
-               )
+               
         },
         deleteContact(state, action) {
-          return state.filter(contact => action.payload.id !== contact.id )
+          state.contacts = state.contacts.filter(contact => contact.id !== action.payload.id);
+      
         },
         
                   
